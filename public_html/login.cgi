@@ -19,6 +19,7 @@ if ($email !~ /..*@..*\...*/) {
 	print $query->redirect(
 		-url => 'index.cgi'
 	);
+	exit(0);
 }
 
 #save the given email address
