@@ -17,6 +17,8 @@ Content-type: text/html
         map.setCenter(pos);
         map.setZoom(16);
 
+        //TODO: initialize surrounding area with quests
+
         //debugging
         document.getElementById('debug').innerHTML = "<p>Latitude: " + pos.lat + ", Longitude: " + pos.lng + "</p>";
       }
