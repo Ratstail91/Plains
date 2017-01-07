@@ -15,7 +15,7 @@ Content-type: text/html
         }
 
         map.setCenter(pos);
-        map.setZoom(16);
+        map.setZoom(18);
 
         //TODO: initialize surrounding area with quests
 
@@ -41,9 +41,11 @@ Content-type: text/html
   </head>
   <body>
 
-    <h1>Map Screen</h1>
-    <a href="logout.cgi">Logout</a>
-    <div id="debug"></div>
+    <div class="centered">
+      <h1>Map Screen</h1>
+      <a href="logout.cgi">Logout</a>
+      <div id="debug"></div>
+    </div>
     <div id="map"></div>
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhh_fPRDlhHuxpLvxJujCI9FXN4Pievi8&callback=initMap"></script>

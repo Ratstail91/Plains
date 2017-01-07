@@ -6,6 +6,7 @@ Content-type: text/html
     [% INCLUDE head.tt %]
   </head>
   <body>
+    <h1>Login Page</h1>
 
     <!-- login form -->
     <form action="login.cgi" method="post">
