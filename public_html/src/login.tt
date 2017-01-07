@@ -19,8 +19,8 @@ Content-type: text/html
 
     <p>Full Disclosure: This form will save your email for future reference (account management, updates, etc.). The password is currently disabled until further research into password storage is completed (salts & hashes, etc. I need to get it right, you know?)</p>
 
-  </body>
   <footer>
     [% INCLUDE footer.tt %]
   </footer>
+  </body>
 </html>

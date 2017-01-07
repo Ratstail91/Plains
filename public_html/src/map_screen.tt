@@ -17,8 +17,8 @@ Content-type: text/html
 
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhh_fPRDlhHuxpLvxJujCI9FXN4Pievi8&callback=initMap"></script>
 
-  </body>
   <footer>
     [% INCLUDE footer.tt %]
   </footer>
+  </body>
 </html>
