@@ -8,7 +8,7 @@ use Template;
 
 #setup the initial variables
 my $tt = Template->new({
-	INCLUDE_PATH => '.'
+	INCLUDE_PATH => './src'
 }) || die $Template::ERROR, '\n';
 
 my %cookies = CGI::Cookie->fetch;
@@ -16,9 +16,11 @@ my %cookies = CGI::Cookie->fetch;
 #choose the correct landing page
 if (defined $cookies{'USER_ID'}) {
 	#map screen
-	print "Content-type: text/html\n\n";
-	print "map screen\n";
-	print "<a href='logout.cgi'>logout</a>";
+	$tt->process('map_screen.tt', {
+		copyrightOwner => "Kayne Ruse",
+		copyrightCompany => "KR Game Studios",
+		copyrightYear => "2017"
+	}) || die $tt->error(), '\n';
 }
 else {
 	#login screen

@@ -1,14 +1,23 @@
 Content-type: text/html
 
+<!DOCTYPE html>
 <html>
-  [% INCLUDE head.tt %]
+  <head>
+    [% INCLUDE head.tt %]
+  </head>
   <body>
+
+    <!-- login form -->
     <form action="login.cgi" method="post">
       <p>Email:</p>
       <input type="text" name="email" placeholder="username@domain.com" />
       <p>Password:</p>
       <input type="text" name="password" placeholder="password disabled" disabled />
       <button type="submit">Submit</button>
+    </form>
+
   </body>
-  [% INCLUDE footer.tt %]
+  <footer>
+    [% INCLUDE footer.tt %]
+  </footer>
 </html>
