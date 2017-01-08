@@ -1,15 +1,50 @@
 var map;
+var questList = {};
 
-function fetchQuests(position) {
-  //TODO: fetch quests
-//  var text = "Fetching Quests (" + position.lat + ", " + position.lng + ")";
-//  alert(text);
+function fetchQuests(pos) {
+  //fetch quests
+  var request = new XMLHttpRequest();
+
+  //callback
+  request.onreadystatechange = function() {
+    if (request.readyState === 4 && request.status === 200) {
+      //read the JSON data
+      jsonData = JSON.parse(request.responseText);
+
+      //Draw the markers to the map
+      for (var key in jsonData) {
+        //prevent overflow
+        if (typeof questList[key] != 'undefined') {
+          continue;
+        }
+        questList[key] = true;
+
+        //create the quest marker
+        var latLng = new google.maps.LatLng(jsonData[key].latitude, jsonData[key].longitude);
+        var marker = new google.maps.Marker({
+          position: latLng,
+          map: map,
+          title: "quest" //TODO: custom names
+        });
+      }
+    }
+  }
+
+  //setup the variables
+  var formData = new FormData();
+  formData.append("latitude", pos.lat);
+  formData.append("longitude", pos.lng);
+
+  //send the initialization command
+  request.open('POST', 'fetch_quests.cgi');
+  request.send(formData);
 }
 
 function initializePosition(position) {
   //initialize the surrounding area with quests
   var request = new XMLHttpRequest();
 
+  //callback
   request.onreadystatechange = function() {
     if (request.readyState === 4 && request.status === 200) {
       var hash = JSON.parse(request.responseText);
