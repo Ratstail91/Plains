@@ -41,6 +41,12 @@ function fetchQuests(pos) {
 }
 
 function initializePosition(position) {
+  //setup the map's initial state
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: position.coords.latitude, lng: position.coords.longitude},
+    zoom: 18
+  });
+
   //initialize the surrounding area with quests
   var request = new XMLHttpRequest();
 
@@ -72,7 +78,7 @@ function jumpToPosition(position) {
   }
 
   map.setCenter(pos);
-  map.setZoom(18);
+//  map.setZoom(18);
 
   //Check for nearby quests
   fetchQuests(pos);
@@ -83,12 +89,6 @@ function jumpToPosition(position) {
 
 function initMap() {
   if (navigator.geolocation) {
-    //setup the map's initial state
-    map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 0, lng: 0}, //null island
-      zoom: 6
-    });
-
     navigator.geolocation.getCurrentPosition(initializePosition);
     navigator.geolocation.watchPosition(jumpToPosition, function() {}, {enableHighAccuracy: 1});
   }
