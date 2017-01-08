@@ -17,7 +17,7 @@ my $dbh = DBI->connect('dbi:mysql:database=plains;localhost','access','',{AutoCo
 my $sth = $dbh->prepare("SELECT id, latitude, longitude FROM quests;");#TODO: scalability issues
 $sth->execute() or die $DBI::errstr;
 
-#check to see how many quests are within 10km
+#check to see how many quests are within 1km
 my $gis = GIS::Distance->new('Polar');
 my $nearbyCount = 0;
 

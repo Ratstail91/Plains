@@ -31,6 +31,7 @@ function fetchQuests(pos) {
   }
 
   //setup the variables
+  //TODO: variable radius
   var formData = new FormData();
   formData.append("latitude", pos.lat);
   formData.append("longitude", pos.lng);
@@ -81,7 +82,7 @@ function jumpToPosition(position) {
 //  map.setZoom(18);
 
   //Check for nearby quests
-  fetchQuests(pos);
+//  fetchQuests(pos);
 
   //debugging
   document.getElementById('debug').innerHTML = "<p>Latitude: " + pos.lat + ", Longitude: " + pos.lng + "</p>";
