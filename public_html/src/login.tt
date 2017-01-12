@@ -4,20 +4,30 @@ Content-type: text/html
 <html>
   <head>
     [% INCLUDE head.tt %]
+    <link href="styles/login.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
-    <h1>Login Page</h1>
+    <h1>Welcome to Plains!</h1>
 
     <!-- login form -->
-    <form action="login.cgi" method="post">
-      <p>Email:</p>
-      <input type="text" name="email" placeholder="username@domain.com" />
-      <p>Password:</p>
-      <input type="text" name="password" placeholder="password disabled" disabled />
-      <button type="submit">Submit</button>
-    </form>
+    <div class="centered">
+      <form action="login.cgi" method="post">
 
-    <p>Full Disclosure: This form will save your email for future reference (account management, updates, etc.). The password is currently disabled until further research into password storage is completed (salts & hashes, etc. I need to get it right, you know?)</p>
+        <p>Email:</p>
+        <input type="text" name="email" placeholder="username@domain.com" />
+
+        <p>Password:</p>
+        <input type="text" name="password" placeholder="password disabled" disabled />
+
+        <div><button type="submit">Login</button></div>
+
+      </form>
+    </div>
+
+    <div id="message">
+      <p>This is a geolocation game. What is that, you ask? It get's you off your butt and out into the world! Track down quests on the map screen by searching your local neighbourhood, university or high security detention center for the red markers, and then complete the quests you've collected for rewards!</p><br />
+      <p>The password field is currently disabled until further research into password storage is completed (salts & hashes, etc. I need to get it right, you know?)</p>
+    </div>
 
   <footer>
     [% INCLUDE footer.tt %]

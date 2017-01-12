@@ -4,21 +4,23 @@ Content-type: text/html
 <html>
   <head>
     [% INCLUDE head.tt %]
-    <script async defer src="scripts/map_screen.js"></script>
+    <link href="styles/map_screen.css" rel="stylesheet" type="text/css" />
+    <script src="scripts/map_screen.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhh_fPRDlhHuxpLvxJujCI9FXN4Pievi8&callback=initMap"></script>
   </head>
   <body>
 
-    <div class="centered">
-      <h1>Map Screen</h1>
-      <a href="logout.cgi">Logout</a>
-      <div id="debug"></div>
-    </div>
     <div id="map"></div>
 
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhh_fPRDlhHuxpLvxJujCI9FXN4Pievi8&callback=initMap"></script>
+    <header>
+      <a href="logout.cgi">Logout</a>
+      <a href="profile.cgi">Profile</a>
+      <div id="message">Please Wait...</div>
+    </header>
 
   <footer>
     [% INCLUDE footer.tt %]
   </footer>
+
   </body>
 </html>

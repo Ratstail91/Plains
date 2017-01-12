@@ -35,6 +35,7 @@ function fetchQuests(pos) {
   var formData = new FormData();
   formData.append("latitude", pos.lat);
   formData.append("longitude", pos.lng);
+  formData.append("radius", 1000);
 
   //send the initialization command
   request.open('POST', 'fetch_quests.cgi');
@@ -85,7 +86,7 @@ function jumpToPosition(position) {
 //  fetchQuests(pos);
 
   //debugging
-  document.getElementById('debug').innerHTML = "<p>Latitude: " + pos.lat + ", Longitude: " + pos.lng + "</p>";
+  document.getElementById('message').innerHTML = "<p>Latitude: " + pos.lat + ", Longitude: " + pos.lng + "</p>";
 }
 
 function initMap() {
@@ -95,7 +96,7 @@ function initMap() {
   }
   else {
     //error message
-    document.getElementById('debug').innerHTML = "<p>Geolocation is not supported by this browser.</p>";
+    document.getElementById('message').innerHTML = "<p>Geolocation is not supported by this browser.</p>";
   }
 }
 
