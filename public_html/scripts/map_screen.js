@@ -1,6 +1,8 @@
+var apiKey = 'AIzaSyBxfC74w9f09Ts4a1IjGggxotTnTXVsFls';
 var map;
 var questList = {};
 
+//fetch all nearby quests from the server
 function fetchQuests(pos) {
   //fetch quests
   var request = new XMLHttpRequest();
@@ -17,21 +19,20 @@ function fetchQuests(pos) {
         if (typeof questList[key] != 'undefined') {
           continue;
         }
-        questList[key] = true;
 
         //create the quest marker
         var latLng = new google.maps.LatLng(jsonData[key].latitude, jsonData[key].longitude);
-        var marker = new google.maps.Marker({
+        questList[key] = new google.maps.Marker({
           position: latLng,
           map: map,
           title: "quest" //TODO: custom names
         });
       }
+      calcDistances(pos);
     }
   }
 
   //setup the variables
-  //TODO: variable radius
   var formData = new FormData();
   formData.append("latitude", pos.lat);
   formData.append("longitude", pos.lng);
@@ -42,6 +43,57 @@ function fetchQuests(pos) {
   request.send(formData);
 }
 
+//collect quest markers
+function calcDistances(pos) {
+  //build the request, made up of questList's position objects
+  var posList = [];
+  for (var key in questList) {
+    posList.push(questList[key].getPosition());
+  }
+
+  //empty list
+  if (posList.length == 0) {
+    return -1;
+  }
+
+  //create the service call
+  var service = new google.maps.DistanceMatrixService();
+  service.getDistanceMatrix({
+    origins: [new google.maps.LatLng(pos.lat, pos.lng)],
+    destinations: posList,
+    travelMode: 'WALKING'
+  }, function(response, status) {
+    //error check
+    if (status != 'OK') {
+      console.log(status);
+      return -1;
+    }
+    //iterate through the response
+
+    //rows are the number of origins
+    //elements are the number of destinations
+
+    results = response.rows[0].elements;
+    for (var i = 0; i < results.length; i++) {
+      if (results[i].status != 'OK') {
+        console.log('status error: ', results.status);
+        continue;
+      }
+
+      if (results[i].distance.value < 5) {
+        document.getElementById('message').innerHTML += 'X';
+        //change the marker, by looping through existing markers
+        for (key in questList) {
+          if (posList[i] == questList[key].getPosition()) {
+            questList[key].setLabel('O');
+          }
+        }
+      }
+    }
+  });
+}
+
+//called once
 function initializePosition(position) {
   //setup the map's initial state
   map = new google.maps.Map(document.getElementById('map'), {
@@ -73,6 +125,7 @@ function initializePosition(position) {
   request.send(formData);
 }
 
+//called repeatedly
 function jumpToPosition(position) {
   var pos = {
     lat: position.coords.latitude,
@@ -81,6 +134,7 @@ function jumpToPosition(position) {
 
   map.setCenter(pos);
 //  map.setZoom(18);
+//  calcDistances(pos);
 
   //Check for nearby quests
 //  fetchQuests(pos);
@@ -89,6 +143,7 @@ function jumpToPosition(position) {
   document.getElementById('message').innerHTML = "<p>Latitude: " + pos.lat + ", Longitude: " + pos.lng + "</p>";
 }
 
+//this function is passed to the API itself
 function initMap() {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(initializePosition);
