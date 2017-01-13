@@ -6,7 +6,7 @@ Content-type: text/html
     [% INCLUDE head.tt %]
     <link href="styles/map_screen.css" rel="stylesheet" type="text/css" />
     <script src="scripts/map_screen.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhh_fPRDlhHuxpLvxJujCI9FXN4Pievi8&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxfC74w9f09Ts4a1IjGggxotTnTXVsFls&callback=initMap"></script>
   </head>
   <body>
 
