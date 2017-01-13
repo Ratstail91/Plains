@@ -1,0 +1,19 @@
+Content-type: text/html
+
+<!DOCTYPE html>
+<html>
+  <head>
+    [% INCLUDE head.tt %]
+    <link href="styles/profile.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+
+    <p>This page is under construction.</p>
+    <a href="map_screen.cgi">Map Screen</a>
+
+    <footer>
+      [% INCLUDE footer.tt %]
+    </footer>
+
+  </body>
+</html>

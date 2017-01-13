@@ -18,9 +18,9 @@ Content-type: text/html
       <div id="message">Please Wait...</div>
     </header>
 
-  <footer>
-    [% INCLUDE footer.tt %]
-  </footer>
+    <footer>
+      [% INCLUDE footer.tt %]
+    </footer>
 
   </body>
 </html>

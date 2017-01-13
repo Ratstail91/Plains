@@ -24,6 +24,5 @@ if (!defined $cookies{'USER_ID'}) {
 }
 
 #output the HTML page
-$tt->process('profile.tt') || die $tt->error(), '\n';
-
+$tt->process('map_screen.tt') || die $tt->error(), '\n';
 
