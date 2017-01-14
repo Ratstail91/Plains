@@ -25,7 +25,7 @@ if ($email !~ /..*@..*\...*/) {
 #save the given email address
 my $dbh = DBI->connect('dbi:mysql:database=plains;localhost','access','',{AutoCommit=>1,RaiseError=>1,PrintError=>1});
 
-my $sth = $dbh->prepare("INSERT IGNORE INTO mailinglist (email) VALUES (\"$email\");");
+my $sth = $dbh->prepare("INSERT IGNORE INTO profiles (email) VALUES (\"$email\");");
 
 $sth->execute() or die $DBI::errstr;
 

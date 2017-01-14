@@ -23,7 +23,7 @@ $message->body_set("Hello world!");
 
 #get the database
 my $dbh = DBI->connect('dbi:mysql:database=plains;localhost','access','',{AutoCommit=>1,RaiseError=>1,PrintError=>1});
-my $sth = $dbh->prepare("SELECT email FROM mailinglist;");
+my $sth = $dbh->prepare("SELECT email FROM profiles;");
 
 $sth->execute() or die $DBI::errstr;
 
