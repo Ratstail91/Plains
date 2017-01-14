@@ -28,7 +28,6 @@ function fetchQuests(pos) {
           title: "quest" //TODO: custom names
         });
       }
-      calcDistances(pos);
     }
   }
 
@@ -65,7 +64,10 @@ function calcDistances(pos) {
   }, function(response, status) {
     //error check
     if (status != 'OK') {
-      console.log(status);
+      if (status == 'OVER_QUERY_LIMIT') {
+        alert("Sorry, it looks like this app has used up it's API privileges. Come back tomorrow!");
+      }
+      alert(status);
       return -1;
     }
     //iterate through the response
