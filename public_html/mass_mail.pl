@@ -14,12 +14,12 @@ use Email::Sender::Simple "sendmail";
 my $message = Email::MIME->create();
 
 $message->header_str_set(From => 'no-reply@krgamestudios.com');
-$message->header_str_set(Subject => 'Welcome to Plains!');
+$message->header_str_set(Subject => 'Plains Update');
 
 $message->encoding_set("quoted-printable");
 $message->charset_set("UTF-8");
 
-$message->body_set("Hello world!");
+$message->body_set("Hello dear patron!\n\n MESSAGE TEXT \n\nThank you for your continued patronage of Plains! You have received this message because you signed up to play Plains at plains.krgamestudios.com. If you would like to unsubscribe, please message me at kayneruse\@gmail.com. Because this mass mailer is still quite cheap ;)\n\nBest Regards,\n\nKayne Ruse, KR Game Studios");
 
 #get the database
 my $dbh = DBI->connect('dbi:mysql:database=plains;localhost','access','',{AutoCommit=>1,RaiseError=>1,PrintError=>1});
