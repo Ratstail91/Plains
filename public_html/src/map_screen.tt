@@ -18,6 +18,10 @@ Content-type: text/html
       <div id="message">Please Wait...</div>
     </header>
 
+    <div class="bottomText">
+      <button id="scan" type="button" onClick="navigator.geolocation.getCurrentPosition(scanPosition)">Scan</button>
+    </div>
+
     <footer>
       [% INCLUDE footer.tt %]
     </footer>

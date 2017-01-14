@@ -15,7 +15,7 @@ function fetchQuests(pos) {
 
       //Draw the markers to the map
       for (var key in jsonData) {
-        //prevent overflow
+        //prevent overwriting
         if (typeof questList[key] != 'undefined') {
           continue;
         }
@@ -81,11 +81,10 @@ function calcDistances(pos) {
       }
 
       if (results[i].distance.value < 5) {
-        document.getElementById('message').innerHTML += 'X';
         //change the marker, by looping through existing markers
         for (key in questList) {
           if (posList[i] == questList[key].getPosition()) {
-            questList[key].setLabel('O');
+            questList[key].setLabel('X');
           }
         }
       }
@@ -133,14 +132,20 @@ function jumpToPosition(position) {
   }
 
   map.setCenter(pos);
-//  map.setZoom(18);
-//  calcDistances(pos);
-
-  //Check for nearby quests
-//  fetchQuests(pos);
 
   //debugging
   document.getElementById('message').innerHTML = "<p>Latitude: " + pos.lat + ", Longitude: " + pos.lng + "</p>";
+}
+
+//called on demand
+function scanPosition(position) {
+  //called using navigator.geolocation.getCurrentPosition(scanPosition)
+  var pos = {
+    lat: position.coords.latitude,
+    lng: position.coords.longitude
+  }
+  fetchQuests(pos);
+  calcDistances(pos);
 }
 
 //this function is passed to the API itself
