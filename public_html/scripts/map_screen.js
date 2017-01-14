@@ -47,7 +47,11 @@ function calcDistances(pos) {
   //build the request, made up of questList's position objects
   var posList = [];
   for (var key in questList) {
-    posList.push(questList[key].getPosition());
+    posList.push({
+      id: key,
+      lat: questList[key].getPosition().lat(),
+      lng: questList[key].getPosition().lng()
+    });
   }
 
   //empty list
@@ -55,43 +59,44 @@ function calcDistances(pos) {
     return -1;
   }
 
-  //create the service call
-  var service = new google.maps.DistanceMatrixService();
-  service.getDistanceMatrix({
-    origins: [new google.maps.LatLng(pos.lat, pos.lng)],
-    destinations: posList,
-    travelMode: 'WALKING'
-  }, function(response, status) {
-    //error check
-    if (status != 'OK') {
-      if (status == 'OVER_QUERY_LIMIT') {
-        alert("Sorry, it looks like this app has used up it's API privileges. Come back tomorrow!");
-      }
-      alert(status);
-      return -1;
-    }
-    //iterate through the response
+  //the payload proper
+  var payload = {
+    origin: pos,
+    destinations: posList
+  };
 
-    //rows are the number of origins
-    //elements are the number of destinations
+  //create the request object
+  var request = new XMLHttpRequest();
 
-    results = response.rows[0].elements;
-    for (var i = 0; i < results.length; i++) {
-      if (results[i].status != 'OK') {
-        console.log('status error: ', results.status);
-        continue;
-      }
+  //callback
+  request.onreadystatechange = function() {
+    if (request.readyState == 4 && request.status == 200) {
+      var response = JSON.parse(request.responseText);
 
-      if (results[i].distance.value < 5) {
-        //change the marker, by looping through existing markers
-        for (key in questList) {
-          if (posList[i] == questList[key].getPosition()) {
-            questList[key].setLabel('X');
-          }
+      //get the nearest marker
+      var nearest;
+      var nearestValue = 99999999;
+
+      for (var key in response) {
+        if (response[key] < nearestValue) {
+          nearest = key;
+          nearestValue = response[key];
         }
       }
+
+      if (nearestValue <= 5) {
+        questList[nearest].setLabel('X');
+      }
     }
-  });
+  };
+
+  //create the form data
+  var formData = new FormData();
+  formData.append('payload', JSON.stringify(payload));
+
+  //send the calculation command
+  request.open('POST', 'distances.cgi');
+  request.send(formData);
 }
 
 //called once
