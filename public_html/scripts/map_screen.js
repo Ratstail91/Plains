@@ -1,6 +1,7 @@
 var apiKey = 'AIzaSyBxfC74w9f09Ts4a1IjGggxotTnTXVsFls';
 var map;
 var questList = {};
+var distanceToNearest = '???';
 
 //fetch all nearby quests from the server
 function fetchQuests(pos) {
@@ -82,11 +83,15 @@ function calcDistances(pos) {
           nearest = key;
           nearestValue = response[key];
         }
+        //debugging
+        questList[key].setLabel('');
       }
 
-      if (nearestValue <= 5) {
+      if (nearestValue <= 10) {
         questList[nearest].setLabel('X');
       }
+      //debugging
+      distanceToNearest = nearestValue;
     }
   };
 
@@ -141,7 +146,7 @@ function jumpToPosition(position) {
   map.setCenter(pos);
 
   //debugging
-  document.getElementById('message').innerHTML = "<p>Latitude: " + pos.lat + ", Longitude: " + pos.lng + "</p>";
+  document.getElementById('message').innerHTML = "<p>Latitude: " + pos.lat + ", Longitude: " + pos.lng + "</p>" + "<p>Distance to Nearest: " + distanceToNearest + "</p>";
 }
 
 //called on demand

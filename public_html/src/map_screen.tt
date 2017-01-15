@@ -19,7 +19,7 @@ Content-type: text/html
     </header>
 
     <div class="bottomText">
-      <button id="scan" type="button" onClick="navigator.geolocation.getCurrentPosition(scanPosition)">Scan</button>
+      <button async id="scan" type="button" onClick="navigator.geolocation.getCurrentPosition(scanPosition)">Scan</button>
     </div>
 
     <footer>
