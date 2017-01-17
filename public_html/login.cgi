@@ -3,45 +3,26 @@
 use strict;
 use warnings;
 
-use CGI ":standard";
+use CGI;
 use CGI::Cookie;
-use DBI;
+use Template;
 
-$CGI::LIST_CONTEXT_WARN = 0;
+#setup the initial variables
+my %cookies = CGI::Cookie->fetch;
 
-my $query = CGI->new;
-
-#get the data
-my $email = escapeHTML($query->param('email'));
-
-#check to see of it's a valid email address
-if ($email !~ /..*@..*\...*/) {
-	print $query->redirect(
+#if someone gets here with a cookie
+if (defined $cookies{'USER_ID'}) {
+	#send them to the main page
+	print CGI->redirect(
 		-url => 'index.cgi'
 	);
 	exit(0);
 }
 
-#save the given email address
-my $dbh = DBI->connect('dbi:mysql:database=plains;localhost','access','',{AutoCommit=>1,RaiseError=>1,PrintError=>1});
+my $tt = Template->new({
+	INCLUDE_PATH => './src'
+}) || die $Template::ERROR, '\n';
 
-my $sth = $dbh->prepare("INSERT IGNORE INTO profiles (email) VALUES (\"$email\");");
+#login landing page
+$tt->process('login.tt') || die $tt->error(), '\n';
 
-$sth->execute() or die $DBI::errstr;
-
-$sth->finish();
-$dbh->disconnect();
-
-#store the user data as a cookie
-my $cookie = $query->cookie({
-	-name => 'USER_ID',
-	-value => "email=$email",
-	-expires => '4h',
-	-domain => 'plains.krgamestudios.com'
-});
-
-#print the cookie information
-print $query->redirect(
-	-url => 'index.cgi',
-	-cookie => $cookie
-);

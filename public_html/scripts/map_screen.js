@@ -87,7 +87,7 @@ function calcDistances(pos) {
         questList[key].setLabel('');
       }
 
-      if (nearestValue <= 10) {
+      if (nearestValue <= 30) {
         questList[nearest].setLabel('X');
       }
       //debugging
