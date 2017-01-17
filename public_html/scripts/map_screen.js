@@ -4,7 +4,7 @@ var questList = {};
 var distanceToNearest = '???';
 
 //fetch all nearby quests from the server
-function fetchQuests(pos) {
+function fetchQuestMarkers(pos) {
   //fetch quests
   var request = new XMLHttpRequest();
 
@@ -39,7 +39,7 @@ function fetchQuests(pos) {
   formData.append("radius", 1000);
 
   //send the initialization command
-  request.open('POST', 'fetch_quests.cgi');
+  request.open('POST', 'fetch_quest_markers.cgi');
   request.send(formData);
 }
 
@@ -119,7 +119,7 @@ function initializePosition(position) {
   request.onreadystatechange = function() {
     if (request.readyState === 4 && request.status === 200) {
       var hash = JSON.parse(request.responseText);
-      fetchQuests({
+      fetchQuestMarkers({
         lat: hash.latitude,
         lng: hash.longitude
       });
@@ -156,7 +156,7 @@ function scanPosition(position) {
     lat: position.coords.latitude,
     lng: position.coords.longitude
   }
-  fetchQuests(pos);
+  fetchQuestMarkers(pos);
   calcDistances(pos);
 }
 
