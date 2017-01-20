@@ -14,7 +14,7 @@ Content-type: text/html
 
     <header>
       <a href="logout.cgi">Logout</a>
-      <a href="profile.cgi">Profile</a>
+      <a href="profile_screen.cgi">Profile</a>
       <div id="message">Please Wait...</div>
     </header>
 
