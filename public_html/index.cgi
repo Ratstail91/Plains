@@ -12,11 +12,11 @@ my %cookies = CGI::Cookie->fetch;
 
 #choose the correct landing page
 if (!defined $cookies{'USER_ID'}) {
-	#login landing page
+	#landing page
 	my $query = CGI->new;
 
 	print $query->redirect(
-		-url => 'login.cgi',
+		-url => 'landing_screen.cgi',
 	);
 }
 else {

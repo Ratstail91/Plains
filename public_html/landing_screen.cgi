@@ -24,5 +24,5 @@ my $tt = Template->new({
 }) || die $Template::ERROR, '\n';
 
 #login landing page
-$tt->process('login.tt') || die $tt->error(), '\n';
+$tt->process('landing_screen.tt') || die $tt->error(), '\n';
 

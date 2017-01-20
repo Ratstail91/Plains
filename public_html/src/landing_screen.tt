@@ -4,7 +4,7 @@ Content-type: text/html
 <html>
   <head>
     [% INCLUDE head.tt %]
-    <link href="styles/login.css" rel="stylesheet" type="text/css" />
+    <link href="styles/landing_screen.css" rel="stylesheet" type="text/css" />
   </head>
   <body>
     <h1>Welcome to Plains!</h1>
