@@ -5,28 +5,60 @@ Content-type: text/html
   <head>
     [% INCLUDE head.tt %]
     <link href="styles/landing_screen.css" rel="stylesheet" type="text/css" />
+    <script src="scripts/landing_screen.js" type="text/javascript"></script>
   </head>
   <body>
     <h1>Welcome to Plains!</h1>
 
     <!-- login form -->
     <div class="centered">
-      <form action="fetch_login_cookie.cgi" method="post">
+      <form id="loginform" action="fetch_login_cookie.cgi" method="post" class="bordered">
 
-        <p>Email:</p>
-        <input type="text" name="email" placeholder="username@domain.com" />
+        <p class="shown">Email:</p>
+        <br class="shown" />
+        <input type="text" name="email" placeholder="username@domain.com" class="shown" />
+        <br class="shown" />
 
-        <p>Password:</p>
-        <input type="text" name="password" placeholder="password disabled" disabled />
+        <p class="shown">Password:</p>
+        <br class="shown" />
+        <input type="text" name="password" placeholder="password disabled" class="shown" disabled />
+        <br class="shown" />
 
-        <div><button type="submit">Login</button></div>
+        <div><button type="button" onClick="pressedLogin()">Login</button></div>
 
       </form>
     </div>
 
-    <div id="message">
-      <p>This is a geolocation game. What is that, you ask? It get's you off your butt and out into the world! Track down quests on the map screen by searching your local neighbourhood, university or high security detention center for the red markers, and then complete the quests you've collected for rewards!</p><br />
-      <p>The password field is currently disabled until further research into password storage is completed (salts & hashes, etc. I need to get it right, you know?)</p>
+    <!-- signup form -->
+    <div class="centered">
+      <form id="signupform" class="bordered">
+
+        <p class="hidden">Email:</p>
+        <br class="hidden" />
+        <input type="text" name="email" placeholder="signup disabled" class="hidden" disabled />
+        <br class="hidden" />
+
+        <p class="hidden">Password:</p>
+        <br class="hidden" />
+        <input type="text" name="password" placeholder="password disabled" class="hidden" disabled />
+        <br class="hidden" />
+
+        <p class="hidden">Retype Password:</p>
+        <br class="hidden" />
+        <input type="text" name="retype" placeholder="password disabled" class="hidden" disabled />
+        <br class="hidden" />
+
+        <div><button type="button" onClick="pressedSignup()">Signup</button></div>
+
+      </form>
+    </div>
+
+    <!-- landing page text -->
+    <div class="centered">
+      <div id="message" class="bordered">
+        <p>This is a geolocation game. What is that, you ask? It get's you off your butt and out into the world! Track down quests on the map screen by searching your local neighbourhood, university or high security detention center for the red markers, and then complete the quests you've collected for rewards!</p><br />
+        <p>The password field is currently disabled until further research into password storage is completed (salts & hashes, etc. I need to get it right, you know?)</p>
+      </div>
     </div>
 
     <footer>

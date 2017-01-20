@@ -4,9 +4,8 @@ h1 {
 }
 
 form {
-	border-style: solid;
-	border-width: 3px;
 	display: inline-block;
+	margin-bottom: 1rem;
 	font-size: 60px;
 }
 
@@ -20,7 +19,11 @@ form button {
 }
 
 #message {
+	width: 94%;
 	margin-top: 20%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 2rem;
 	font-size: 36px;
 }
 
@@ -30,3 +33,17 @@ footer {
 	left: 0;
 	right: 0;
 }
+
+.bordered {
+	width: 94%;
+}
+
+.hidden {
+	display: none;
+}
+
+.shown {
+	display: inline-block;
+}
+
+
