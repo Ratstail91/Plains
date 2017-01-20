@@ -31,11 +31,11 @@ Content-type: text/html
 
     <!-- signup form -->
     <div class="centered">
-      <form id="signupform" class="bordered">
+      <form id="signupform" action="new_user.cgi" method="post" class="bordered">
 
         <p class="hidden">Email:</p>
         <br class="hidden" />
-        <input type="text" name="email" placeholder="signup disabled" class="hidden" disabled />
+        <input type="text" name="email" placeholder="username@domain.com" class="hidden" />
         <br class="hidden" />
 
         <p class="hidden">Password:</p>
@@ -55,7 +55,7 @@ Content-type: text/html
 
     <!-- landing page text -->
     <div class="centered">
-      <div id="message" class="bordered">
+      <div id="message">
         <p>This is a geolocation game. What is that, you ask? It get's you off your butt and out into the world! Track down quests on the map screen by searching your local neighbourhood, university or high security detention center for the red markers, and then complete the quests you've collected for rewards!</p><br />
         <p>The password field is currently disabled until further research into password storage is completed (salts & hashes, etc. I need to get it right, you know?)</p>
       </div>

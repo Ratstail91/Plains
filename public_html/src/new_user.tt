@@ -1,0 +1,24 @@
+Content-type: text/html
+
+<!DOCTYPE html>
+<html>
+  <head>
+    [% INCLUDE head.tt %]
+    <link href="styles/new_user.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body class="centered">
+
+    [% IF result == 0 %]
+      <p>Signup was a success!</p>
+      <p>An email was sent to you, make sure it isn't caught in your spam filters!</p>
+      <p>Not really, the email is broken :(</p>
+    [% ELSE %]
+      <p>Signup failed!</p>
+    [% END %]
+    <a href="index.cgi">Return to the main page</a>
+
+    <footer>
+      [% INCLUDE footer.tt %]
+    </footer>
+  </body>
+</html>
