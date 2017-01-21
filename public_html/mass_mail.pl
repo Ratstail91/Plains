@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 
-#prevent accidentally sendind a mass email
+#prevent accidentally sending a mass email
 exit(1);
 
 use strict;

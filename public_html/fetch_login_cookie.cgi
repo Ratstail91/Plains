@@ -26,9 +26,18 @@ if ($email !~ /..*@..*\...*/) {
 #Find the profile based on the email address
 my $dbh = DBI->connect('dbi:mysql:database=plains;localhost','access','',{AutoCommit=>1,RaiseError=>1,PrintError=>1});
 
-my $sth = $dbh->prepare("SELECT * FROM profiles WHERE email='$email';");
+my $sth = $dbh->prepare("SELECT COUNT(*) FROM profiles WHERE email='$email';");
 
 $sth->execute() or die $DBI::errstr;
+
+#verify that the account exists
+if ($sth->fetch()->[0] == 0) {
+	#TODO: better login failure screen
+	print $query->redirect(
+		-url => 'index.cgi'
+	);
+};
+	
 
 #Load the necessary data into the cookie
 
