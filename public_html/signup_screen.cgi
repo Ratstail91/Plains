@@ -38,7 +38,7 @@ my $result = $sth->fetch()->[0];
 $sth->finish();
 
 #print out the success or failure message
-$tt->process('new_user.tt', {
+$tt->process('signup_screen.tt', {
 	result => $result
 }) || die $tt->error(), '\n';
 

@@ -31,7 +31,7 @@ Content-type: text/html
 
     <!-- signup form -->
     <div class="centered">
-      <form id="signupform" action="new_user.cgi" method="post" class="bordered">
+      <form id="signupform" action="signup_screen.cgi" method="post" class="bordered">
 
         <p class="hidden">Email:</p>
         <br class="hidden" />
