@@ -67,6 +67,6 @@ $message->header_str_set('Content-type' => 'text/html');
 $message->encoding_set('quoted-printable');
 $message->charset_set('UTF-8');
 
-$message->body_set("<html><body><p>Hello Player!</p><p>This is a verification message. To verify your email for Plains, please click here: <a href='https://plains.krgamestudios.com/register_screen.cgi?key=$key'>https://krgamestudios.com/register_screen.cgi?key=$key</a></p><p>If you didn't sign up for this message, please ignore it.</p></body></html>");
+$message->body_set("<html><body><p>Hello Player!</p><p>This is a verification message. To verify your email for Plains, please click here: <a href='https://plains.krgamestudios.com/register_screen.cgi?key=$key'>https://krgamestudios.com/register_screen.cgi?key=$key</a></p><p>If you wish to receive weekly updates on the progress of Plains, remember to mark this address as not spam.</p><p>If you didn't sign up for this message, please ignore it.</p></body></html>");
 
 sendmail($message);
