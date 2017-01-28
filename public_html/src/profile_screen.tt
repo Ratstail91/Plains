@@ -11,9 +11,9 @@ Content-type: text/html
     <p>This page is under construction.</p>
     <a href="map_screen.cgi">Map Screen</a>
 
-    <footer>
-      [% INCLUDE footer.tt %]
-    </footer>
-
   </body>
+
+  <footer>
+    [% INCLUDE footer.tt %]
+  </footer>
 </html>

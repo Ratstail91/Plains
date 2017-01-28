@@ -60,9 +60,9 @@ Content-type: text/html
         <p>The password field is currently disabled until further research into password storage is completed (salts & hashes, etc. I need to get it right, you know?)</p>
       </div>
     </div>
-
-    <footer>
-      [% INCLUDE footer.tt %]
-    </footer>
   </body>
+
+  <footer>
+    [% INCLUDE footer.tt %]
+  </footer>
 </html>

@@ -21,10 +21,9 @@ Content-type: text/html
     <div class="bottomText">
       <button async id="scan" type="button" onClick="navigator.geolocation.getCurrentPosition(scanPosition)">Scan</button>
     </div>
-
-    <footer>
-      [% INCLUDE footer.tt %]
-    </footer>
-
   </body>
+
+  <footer>
+    [% INCLUDE footer.tt %]
+  </footer>
 </html>

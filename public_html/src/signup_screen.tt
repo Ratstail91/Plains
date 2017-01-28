@@ -15,9 +15,9 @@ Content-type: text/html
       <p>Signup failed!</p>
     [% END %]
     <a href="index.cgi">Return to the main page</a>
-
-    <footer>
-      [% INCLUDE footer.tt %]
-    </footer>
   </body>
+
+  <footer>
+    [% INCLUDE footer.tt %]
+  </footer>
 </html>
