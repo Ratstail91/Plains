@@ -2,12 +2,21 @@ html {
 	height: 100%;
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+	box-sizing: inherit;
 }
 
 body {
-	height: 100%;
+	position: relative;
+	min-height: 100%;	
 	margin: 0;
 	padding: 0;
+	padding-bottom: 1rem;
 }
 
 header {
@@ -15,6 +24,11 @@ header {
 }
 
 footer {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: yellow;
 	text-align: center;
 	font-size: 24px;
 	margin: 0;
