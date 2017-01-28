@@ -8,18 +8,18 @@ Content-type: text/html
     <script src="scripts/map_screen.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBxfC74w9f09Ts4a1IjGggxotTnTXVsFls&callback=initMap"></script>
   </head>
-  <body>
+  <body class="text medium">
 
     <div id="map"></div>
 
     <header>
-      <a href="logout.cgi">Logout</a>
-      <a href="profile_screen.cgi">Profile</a>
-      <div id="message">Please Wait...</div>
+      <a href="logout.cgi" class="text large">Logout</a>
+      <a href="profile_screen.cgi" class="text large">Profile</a>
+      <div id="message" class="text small">Please Wait...</div>
     </header>
 
     <div class="bottomText">
-      <button async id="scan" type="button" onClick="navigator.geolocation.getCurrentPosition(scanPosition)">Scan</button>
+      <button async id="scan" type="button" class="text large" onClick="navigator.geolocation.getCurrentPosition(scanPosition)">Scan</button>
     </div>
   </body>
 

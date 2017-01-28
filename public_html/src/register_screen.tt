@@ -6,7 +6,7 @@ Content-type: text/html
     [% INCLUDE head.tt %]
     <link href="styles/register_screen.css" rel="stylesheet" type="text/css" />
   </head>
-  <body class="centered">
+  <body class="centered text medium">
 
     [% IF result %]
       <p>Registration was a success!</p>

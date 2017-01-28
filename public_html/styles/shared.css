@@ -9,6 +9,7 @@ html {
 *:before,
 *:after {
 	box-sizing: inherit;
+	font-size: inherit;
 }
 
 body {
@@ -16,7 +17,7 @@ body {
 	min-height: 100%;	
 	margin: 0;
 	padding: 0;
-	padding-bottom: 1rem;
+	padding-bottom: 2rem;
 }
 
 header {
@@ -49,4 +50,20 @@ p {
 .bordered {
 	border-style: solid;
 	border-width: 3px;
+}
+
+.text.massive {
+	font-size: 80px;
+}
+
+.text.large {
+	font-size: 60px;
+}
+
+.text.medium {
+	font-size: 36px;
+}
+
+.text.small {
+	font-size: 24px;
 }

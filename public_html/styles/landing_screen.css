@@ -1,29 +1,16 @@
 h1 {
 	text-align: center;
-	font-size: 60px;
 }
 
 form {
 	display: inline-block;
 	margin-bottom: 1rem;
-	font-size: 60px;
-}
-
-form input {
-	size: 60px;
-	font-size: 60px;
-}
-
-form button {
-	font-size: 60px;
 }
 
 #message {
 	width: 94%;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: 2rem;
-	font-size: 36px;
 }
 
 .bordered {

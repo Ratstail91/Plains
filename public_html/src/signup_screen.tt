@@ -6,7 +6,7 @@ Content-type: text/html
     [% INCLUDE head.tt %]
     <link href="styles/signup_screen.css" rel="stylesheet" type="text/css" />
   </head>
-  <body class="centered">
+  <body class="centered text medium">
 
     [% IF result == 0 %]
       <p>Signup was a success!</p>

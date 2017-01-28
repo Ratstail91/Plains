@@ -12,11 +12,9 @@ header {
 	left: 0;
 	right: 0;
 	text-align: center;
-	font-size: 24px;
 }
 
 header a {
-	font-size: 60px;
 	color: blue;
 }
 
@@ -34,7 +32,6 @@ header div {
 }
 
 .bottomText button {
-	font-size: 80px;
 	position: relative;
 	bottom: 2.5rem;
 	left: 0;

@@ -7,11 +7,11 @@ Content-type: text/html
     <link href="styles/landing_screen.css" rel="stylesheet" type="text/css" />
     <script src="scripts/landing_screen.js" type="text/javascript"></script>
   </head>
-  <body>
-    <h1>Welcome to Plains!</h1>
+  <body class="text medium">
+    <h1 class="text large">Welcome to Plains!</h1>
 
     <!-- login form -->
-    <div class="centered">
+    <div class="centered text large">
       <form id="loginform" action="fetch_login_cookie.cgi" method="post" class="bordered">
 
         <p class="shown">Email:</p>
@@ -30,7 +30,7 @@ Content-type: text/html
     </div>
 
     <!-- signup form -->
-    <div class="centered">
+    <div class="centered text large">
       <form id="signupform" action="signup_screen.cgi" method="post" class="bordered">
 
         <p class="hidden">Email:</p>
