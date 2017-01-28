@@ -43,6 +43,10 @@ p {
 	margin: 0;
 }
 
+a {
+	color: blue;
+}
+
 .centered {
 	text-align: center;
 }
@@ -74,10 +78,6 @@ p {
 	left: 0;
 	right: 0;
 	margin: 0;
-}
-
-.topText a {
-	color: blue;
 }
 
 .bottomText {

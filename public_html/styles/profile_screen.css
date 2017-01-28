@@ -1,0 +1,43 @@
+#coinDisplay {
+	float: left;
+}
+
+#jewelDisplay {
+	float: right;
+}
+
+table {
+	width: 94%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+table thead tr th {
+	border: 1px solid #000;
+	border-bottom: 3px solid #000;
+	margin: 0;
+}
+
+table tbody tr {
+	padding: 0;
+	margin: 0;
+}
+
+table tbody tr td {
+	text-align: right;
+	border-bottom: 1px solid #000;
+	border-right: 1px solid #000;
+	margin: 0;
+}
+
+table tbody tr:nth-child(2n) {
+	background-color: #CCC;
+}
+
+.sortable th.descend:after {
+	content: "\25B2";
+}
+
+.sortable th.ascend:after {
+	content: "\25BC";
+}

@@ -5,13 +5,25 @@ Content-type: text/html
   <head>
     [% INCLUDE head.tt %]
     <link href="styles/profile_screen.css" rel="stylesheet" type="text/css" />
+    <script src="scripts/profile_screen.js"></script>
   </head>
   <body class="text medium">
 
-    <div class="topText centered text large">
+    <div class="centered text large">
       <a href="logout.cgi">Logout</a>
       <a href="map_screen.cgi">Map</a>
     </div>
+
+    <div id="coinDisplay" class="text large"><p>Coins: 0</p></div>
+    <div id="jewelDisplay" class="text large"><p>Jewels: 0</p></div>
+
+    <div style="clear: both"></div>
+
+    <p class="centered" style="color:red">This page is under construction.</p>
+
+    <h1 class="centered">Quests</h1>
+
+    <table id="questTable"></table>
 
   </body>
 
