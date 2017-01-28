@@ -12,13 +12,13 @@ Content-type: text/html
 
     <div id="map"></div>
 
-    <header>
-      <a href="logout.cgi" class="text large">Logout</a>
-      <a href="profile_screen.cgi" class="text large">Profile</a>
+    <div class="topText centered text large">
+      <a href="logout.cgi">Logout</a>
+      <a href="profile_screen.cgi">Profile</a>
       <div id="message" class="text small">Please Wait...</div>
-    </header>
+    </div>
 
-    <div class="bottomText">
+    <div class="bottomText centered">
       <button async id="scan" type="button" class="text large" onClick="navigator.geolocation.getCurrentPosition(scanPosition)">Scan</button>
     </div>
   </body>

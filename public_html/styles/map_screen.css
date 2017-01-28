@@ -6,29 +6,8 @@ body {
 	height: 100%;
 }
 
-header {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	text-align: center;
-}
-
-header a {
-	color: blue;
-}
-
-header div {
+.topText div {
 	color: red;
-}
-
-.bottomText {
-	position: absolute;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	text-align: center;
-	margin: 0;
 }
 
 .bottomText button {

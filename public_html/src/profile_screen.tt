@@ -6,10 +6,12 @@ Content-type: text/html
     [% INCLUDE head.tt %]
     <link href="styles/profile_screen.css" rel="stylesheet" type="text/css" />
   </head>
-  <body class="centered text medium">
+  <body class="text medium">
 
-    <p>This page is under construction.</p>
-    <a href="map_screen.cgi">Map Screen</a>
+    <div class="topText centered text large">
+      <a href="logout.cgi">Logout</a>
+      <a href="map_screen.cgi">Map</a>
+    </div>
 
   </body>
 
