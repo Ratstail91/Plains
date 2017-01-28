@@ -19,7 +19,7 @@ window.onload = function() {
   header = header + "</tr></thead>";
 
   var body = "<tbody>";
-  for (var i = 1; i < 15; i++) {
+  for (var i = 1; i < 35; i++) {
     body = body + "<tr>";
     for (var j = 0; j < 5; j++) {
       body = body + "<td>" + lorem[i*5 + j] + "</td>";

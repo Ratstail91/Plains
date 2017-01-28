@@ -7,9 +7,12 @@
 }
 
 table {
-	width: 94%;
+	display: inline-block;
+	max-width: 100%;
 	margin-left: auto;
 	margin-right: auto;
+	overflow-x: scroll;
+	margin: 0;
 }
 
 table thead tr th {
@@ -31,7 +34,7 @@ table tbody tr td {
 }
 
 table tbody tr:nth-child(2n) {
-	background-color: #CCC;
+	background-color: #ffd2b7;
 }
 
 .sortable th.descend:after {

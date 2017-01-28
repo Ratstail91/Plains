@@ -23,7 +23,9 @@ Content-type: text/html
 
     <h1 class="centered">Quests</h1>
 
-    <table id="questTable"></table>
+    <div class="centered">
+      <table id="questTable"></table>
+    </div>
 
   </body>
 
