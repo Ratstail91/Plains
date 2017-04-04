@@ -1,0 +1,53 @@
+/* -- UTILITIES -- */
+.textLeft {
+	text-align: left !important;
+}
+
+.textCentered {
+	text-align: center !important;
+}
+
+.textRight {
+	text-align: right !important;
+}
+
+.textLarge {
+	font-size: 42px !important;
+}
+
+.textMedium {
+	font-size: 24px !important;
+}
+
+.textSmall {
+	font-size: 14px !important;
+}
+
+/* STANDARD */
+*,
+*:before,
+*:after {
+	font-size: inherit;
+	padding: 0;
+	margin: 0;
+}
+
+html {
+	min-height:100vh;
+}
+
+body {
+	min-height: 100vh;
+	background: #EEF;
+	margin: 0;
+}
+
+#root {
+	min-height: 100vh;
+}
+
+/* -- FORM -- */
+input {
+	min-width: 100%;
+	font-size: inherit;
+}
