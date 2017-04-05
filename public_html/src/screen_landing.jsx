@@ -46,7 +46,7 @@ class ScreenLanding extends React.Component {
       }
 
       //TODO: store login details, switch to new screen
-console.log("Response:", xhr.responseText);
+alert(xhr.responseText);
     };
     xhr.open('POST', '/serv/login.cgi');
     xhr.send(formData);

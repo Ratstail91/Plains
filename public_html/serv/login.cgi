@@ -5,6 +5,7 @@ use warnings;
 
 use CGI ":standard";
 use DBI;
+use JSON;
 
 use db;
 
@@ -25,16 +26,19 @@ if ($email !~ /..*@..*\...*/) {
 
 #fetch data from the database
 my $dbh = db->connectDB();
-my $sth = $dbh->prepare("SELECT COUNT(*) FROM profiles WHERE email= '$email';");
+my $sth = $dbh->prepare("SELECT email,coins,jewels FROM profiles WHERE email= '$email';");
 $sth->execute() or die $DBI::errstr;
 
-#if the entry doesn't exist, exit
-if ($sth->fetch()->[0] == 0) {
-  print "failure -2";
-  exit(0);
+#count and print the results
+my @array;
+
+while (my @fields = $sth->fetchrow_array()) {
+  push @array, [@fields];
 }
 
 $sth->finish();
 $dbh->disconnect();
 
-print "success";
+my $json = JSON->new->utf8;
+$json = $json->encode(\@array);
+print $json;
