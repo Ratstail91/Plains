@@ -84,10 +84,10 @@ class ScreenLanding extends React.Component {
 
     //render the full page
     return (
-      <div>
+      <div style={this.props.style}>
         <p className="textLarge textCentered">Welcome to Plains!</p>
         {form}
-        <div className="textCentered" stlye={{display: "inline"}}>
+        <div className="textCentered">
           <Button onClick={this.loginClick.bind(this)}>Log In</Button>
           <Button onClick={this.signupClick.bind(this)}>Sign Up</Button>
         </div>

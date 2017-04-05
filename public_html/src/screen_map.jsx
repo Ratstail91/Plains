@@ -11,7 +11,7 @@ class ScreenMap extends React.Component {
 
   render() {
     return (
-      <div>
+      <div style={this.props.style}>
         <p>Screen Map</p>
         <Button type="submit" onClick={() => this.props.setScreen(SCREEN_LANDING)}>Screen Landing</Button>
         <Button type="submit" onClick={() => this.props.setScreen(SCREEN_MAP)} disabled={true}>Screen Map</Button>

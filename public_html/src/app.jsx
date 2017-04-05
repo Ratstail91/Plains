@@ -7,21 +7,47 @@ import ScreenLanding from './screen_landing.jsx';
 import ScreenMap from './screen_map.jsx';
 import ScreenProfile from './screen_profile.jsx';
 
+import FooterPanel from './footer_panel.jsx';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
   }
 
   render() {
+    let flexStyle = {
+      display: "flex",
+      minHeight: "100vh",
+      flexDirection: "column"
+    };
+
+    let style = {
+      flex: "1"
+    };
+
+    let screen;
+
     switch(this.props.screen) {
       default:
       case SCREEN_LANDING:
-        return <ScreenLanding />;
+        screen = <ScreenLanding style={style} />;
+        break;
+
       case SCREEN_MAP:
-        return <ScreenMap />;
+        screen = <ScreenMap style={style} />;
+        break;
+
       case SCREEN_PROFILE:
-        return <ScreenProfile />;
+        screen = <ScreenProfile style={style} />;
+        break;
     };
+
+    return (
+      <div style={flexStyle}>
+        {screen}
+        <FooterPanel />
+      </div>
+    );
   }
 };
 
