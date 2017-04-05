@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { SCREEN_LANDING, SCREEN_MAP, SCREEN_PROFILE } from './actions.jsx';
+import { SCREEN_LANDING, SCREEN_MAP, SCREEN_PROFILE, SCREEN_SIGNUP } from './actions.jsx';
 
 import ScreenLanding from './screen_landing.jsx';
 import ScreenMap from './screen_map.jsx';
 import ScreenProfile from './screen_profile.jsx';
+import ScreenSignup from './screen_signup.jsx';
 
 import FooterPanel from './footer_panel.jsx';
 
@@ -39,6 +40,10 @@ class App extends React.Component {
 
       case SCREEN_PROFILE:
         screen = <ScreenProfile style={style} />;
+        break;
+
+      case SCREEN_SIGNUP:
+        screen = <ScreenSignup style={style} />;
         break;
     };
 

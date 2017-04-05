@@ -5,6 +5,7 @@ export const SET_DETAILS = 'SET_DETAILS';
 export const SCREEN_LANDING = 'SCREEN_LANDING';
 export const SCREEN_MAP = 'SCREEN_MAP';
 export const SCREEN_PROFILE = 'SCREEN_PROFILE';
+export const SCREEN_SIGNUP = 'SCREEN_SIGNUP';
 
 export function setScreen(screen) {
   return {

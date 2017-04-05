@@ -4,7 +4,7 @@ import { Button } from 'semantic-ui-react';
 
 import { SCREEN_LANDING, SCREEN_MAP, SCREEN_PROFILE, SCREEN_SIGNUP, setScreen } from './actions.jsx';
 
-class ScreenMap extends React.Component {
+class ScreenSignup extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -12,17 +12,17 @@ class ScreenMap extends React.Component {
   render() {
     return (
       <div style={this.props.style}>
-        <p>Screen Map</p>
+        <p>Screen Signup</p>
         <Button type="submit" onClick={() => this.props.setScreen(SCREEN_LANDING)}>Screen Landing</Button>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_MAP)} disabled={true}>Screen Map</Button>
+        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_MAP)}>Screen Map</Button>
         <Button type="submit" onClick={() => this.props.setScreen(SCREEN_PROFILE)}>Screen Profile</Button>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_SIGNUP)}>Screen Signup</Button>
+        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_SIGNUP)} disabled={true}>Screen Signup</Button>
       </div>
     );
   }
 };
 
-ScreenMap.contextTypes = {
+ScreenSignup.contextTypes = {
   store: React.PropTypes.object
 };
 
@@ -38,6 +38,6 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-ScreenMap = connect(mapStateToProps, mapDispatchToProps)(ScreenMap);
+ScreenSignup = connect(mapStateToProps, mapDispatchToProps)(ScreenSignup);
 
-export default ScreenMap;
+export default ScreenSignup;
