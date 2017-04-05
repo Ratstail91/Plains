@@ -29,16 +29,31 @@ my $dbh = db->connectDB();
 my $sth = $dbh->prepare("SELECT email,coins,jewels FROM profiles WHERE email= '$email';");
 $sth->execute() or die $DBI::errstr;
 
-#count and print the results
+#count and store the results
+my $count = 0;
 my @array;
 
 while (my @fields = $sth->fetchrow_array()) {
-  push @array, [@fields];
+  $count++;
+  push @array, @fields;
 }
 
+#cleanup
 $sth->finish();
 $dbh->disconnect();
 
+#check the result
+if ($count == 0) {
+  print "failure -2";
+  exit(0);
+}
+
+if ($count > 1) {
+  print "failure -3";
+  exit(0);
+}
+
+#print the result
 my $json = JSON->new->utf8;
 $json = $json->encode(\@array);
 print $json;

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Button } from 'semantic-ui-react';
 
-import { SCREEN_MAP, setScreen } from './actions.jsx';
+import { SCREEN_MAP, setScreen, setDetails } from './actions.jsx';
 
 const OPEN_LOGIN = 'OPEN_LOGIN';
 const OPEN_SIGNUP = 'OPEN_SIGNUP';
@@ -45,9 +45,26 @@ class ScreenLanding extends React.Component {
         console.log('Error:', xhr.status);
       }
 
-      //TODO: store login details, switch to new screen
-alert(xhr.responseText);
-    };
+      //check for errors
+      function strcmp(a, b) { return (a<b)?-1:((a>b)?1:0); };
+      if (!strcmp(xhr.responseText, "failure -1")) {
+        alert("Invalid email");
+        return;
+      }
+      if (!strcmp(xhr.responseText, "failure -2")) {
+        alert("Username or password incorrect");
+        return;
+      }
+      if (!strcmp(xhr.responseText, "failure -3")) {
+        alert("Duplicate account entries found");
+        return;
+      }
+
+      //store login details, switch to new screen
+      let resp = JSON.parse(xhr.responseText);
+      this.props.setDetails(resp[0], resp[1], resp[2]);
+      this.props.setScreen(SCREEN_MAP);
+    }.bind(this);
     xhr.open('POST', '/serv/login.cgi');
     xhr.send(formData);
   };
@@ -128,7 +145,8 @@ function mapStateToProps(store) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setScreen: (screen) => { dispatch(setScreen(screen)); }
+    setScreen: (screen) => { dispatch(setScreen(screen)); },
+    setDetails: (email, coins, jewels) => { dispatch(setDetails(email, coins, jewels)); }
   };
 }
 
