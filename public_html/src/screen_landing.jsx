@@ -30,7 +30,26 @@ class ScreenLanding extends React.Component {
       return;
     }
 
-    //TODO: login logic
+    //login logic
+    let formData = new FormData();
+    formData.append('email', this.state.email);
+    formData.append('password', this.state.password);
+
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState !== 4) {
+        return;
+      }
+
+      if (xhr.status !== 200) {
+        console.log('Error:', xhr.status);
+      }
+
+      //TODO: store login details, switch to new screen
+console.log("Response:", xhr.responseText);
+    };
+    xhr.open('POST', '/serv/login.cgi');
+    xhr.send(formData);
   };
 
   signupClick() {
