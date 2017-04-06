@@ -18,6 +18,11 @@ class GoogleMap extends React.Component {
     let node = ReactDOM.findDOMNode(this._nodeRef);
 
     this._mapRef = new google.maps.Map(node, options);
+
+    //pass the map to the parent element
+    if (this.props.setMapRef) {
+      this.props.setMapRef(this._mapRef);
+    }
   }
 
   componentDidMount() {

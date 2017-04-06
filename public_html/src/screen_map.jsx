@@ -11,9 +11,47 @@ class ScreenMap extends React.Component {
     super(props);
   }
 
+  syncMap() {
+    this._mapRef.setCenter({
+      lat: this._lat,
+      lng: this._lng
+    });
+  }
+
+  initPosition(position) {
+    this._lat = position.coords.latitude;
+    this._lng = position.coords.longitude;
+    this.syncMap();
+  }
+
+  updatePosition(position) {
+    this._lat = position.coords.latitude;
+    this._lng = position.coords.longitude;
+    this.syncMap();
+  }
+
+  watchPosition() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.initPosition.bind(this));
+      navigator.geolocation.watchPosition(this.updatePosition.bind(this), ()=>{}, {enableHighAccuracy:1});
+    }
+    else {
+      alert("Please enable GPS and reload the page");
+    }
+  }
+
+  loadMarkers() {
+    //TODO: loadMarkers
+  }
+
   logout() {
     this.props.clearStore();
     this.props.setScreen(SCREEN_LANDING);
+  }
+
+  componentDidMount() {
+    this.watchPosition();
+    this.loadMarkers();
   }
 
   render() {
@@ -48,7 +86,7 @@ class ScreenMap extends React.Component {
           >Profile</Button>
 
         </div>
-        <GoogleMap style={{height:"calc(100vh - 24px)"}} />
+        <GoogleMap style={{height:"calc(100vh - 24px)"}} setMapRef={(i) => { this._mapRef = i; }} />
       </div>
     );
   }
