@@ -7,10 +7,13 @@ class GoogleMap extends React.Component {
   }
 
   loadMap() {
-    let options = this.props.options || {
+    let options = {
       center: {lat: 0, lng: 0},
-      zoom: 8
+      zoom: 8,
+      disableDefaultUI: true
     };
+
+    Object.assign(options, this.props.options);
 
     let node = ReactDOM.findDOMNode(this._nodeRef);
 
