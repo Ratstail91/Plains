@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Form, Button } from 'semantic-ui-react';
 
-import { SCREEN_MAP, setScreen, setDetails } from './actions.jsx';
+import { SCREEN_MAP, SCREEN_SIGNUP, setScreen, setDetails } from './actions.jsx';
 
 const OPEN_LOGIN = 'OPEN_LOGIN';
 const OPEN_SIGNUP = 'OPEN_SIGNUP';
@@ -75,7 +75,37 @@ class ScreenLanding extends React.Component {
       return;
     }
 
-    //TODO: signup logic
+    //signup logic
+    let formData = new FormData();
+    formData.append('email', this.state.email);
+    formData.append('password', this.state.password);
+
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState !== 4) {
+        return;
+      }
+
+      if (xhr.status !== 200) {
+        console.log('Error:', xhr.status);
+      }
+
+      //check for errors
+      function strcmp(a, b) { return (a<b)?-1:((a>b)?1:0); };
+      if (!strcmp(xhr.responseText, "failure -1")) {
+        alert("Invalid email");
+        return;
+      }
+      if (!strcmp(xhr.responseText, "failure -2")) {
+        alert("Account already exists");
+        return;
+      }
+
+      //show signup page
+      this.props.setScreen(SCREEN_SIGNUP);
+    }.bind(this);
+    xhr.open('POST', '/serv/signup.cgi');
+    xhr.send(formData);
   };
 
   updateEmail(evt) {

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 
-import { SCREEN_LANDING, SCREEN_MAP, SCREEN_PROFILE, SCREEN_SIGNUP, setScreen } from './actions.jsx';
+import { SCREEN_LANDING, setScreen } from './actions.jsx';
 
 class ScreenSignup extends React.Component {
   constructor(props) {
@@ -11,12 +11,10 @@ class ScreenSignup extends React.Component {
 
   render() {
     return (
-      <div style={this.props.style}>
-        <p>Screen Signup</p>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_LANDING)}>Screen Landing</Button>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_MAP)}>Screen Map</Button>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_PROFILE)}>Screen Profile</Button>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_SIGNUP)} disabled={true}>Screen Signup</Button>
+      <div className="textCentered" style={this.props.style}>
+        <p>Email verification sent!</p>
+        <p>Check your spam folder!</p>
+        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_LANDING)}>Go Back</Button>
       </div>
     );
   }
