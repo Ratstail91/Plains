@@ -2,7 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 
-import { SCREEN_LANDING, SCREEN_MAP, SCREEN_PROFILE, SCREEN_SIGNUP, setScreen } from './actions.jsx';
+import GoogleMap from './google_map.jsx';
+
+import { SCREEN_PROFILE, setScreen } from './actions.jsx';
 
 class ScreenMap extends React.Component {
   constructor(props) {
@@ -12,11 +14,7 @@ class ScreenMap extends React.Component {
   render() {
     return (
       <div style={this.props.style}>
-        <p>Screen Map</p>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_LANDING)}>Screen Landing</Button>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_MAP)} disabled={true}>Screen Map</Button>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_PROFILE)}>Screen Profile</Button>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_SIGNUP)}>Screen Signup</Button>
+        <GoogleMap style={{height:"calc(100vh - 24px)"}} />
       </div>
     );
   }
