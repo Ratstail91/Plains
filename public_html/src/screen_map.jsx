@@ -9,6 +9,14 @@ import { clearStore, SCREEN_LANDING, SCREEN_PROFILE, setScreen } from './actions
 class ScreenMap extends React.Component {
   constructor(props) {
     super(props);
+
+    this._questMarkers = [];
+  }
+
+  //utility functions
+  logout() {
+    this.props.clearStore();
+    this.props.setScreen(SCREEN_LANDING);
   }
 
   syncMap() {
@@ -18,40 +26,84 @@ class ScreenMap extends React.Component {
     });
   }
 
-  initPosition(position) {
+  getPosition(position) {
     this._lat = position.coords.latitude;
     this._lng = position.coords.longitude;
-    this.syncMap();
   }
 
-  updatePosition(position) {
-    this._lat = position.coords.latitude;
-    this._lng = position.coords.longitude;
-    this.syncMap();
-  }
-
+  //get and watch the current position
   watchPosition() {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.initPosition.bind(this));
-      navigator.geolocation.watchPosition(this.updatePosition.bind(this), ()=>{}, {enableHighAccuracy:1});
+      navigator
+        .geolocation
+        .watchPosition(
+          (p)=>{
+            this.getPosition(p);
+            this.syncMap();
+            this.loadMarkers();
+          },
+          ()=>{},
+          {enableHighAccuracy:1}
+        );
     }
     else {
       alert("Please enable GPS and reload the page");
     }
   }
 
+  //load from the server
   loadMarkers() {
-    //TODO: loadMarkers
+    //check the number of loaded markers
+    if (this._questMarkers.length >= 10) { //TODO: magic number
+      return;
+    }
+
+    //create the arguments
+    let formData = new FormData();
+    formData.append("latitude", this._lat);
+    formData.append("longitude", this._lng);
+    formData.append("radius", 1000);
+
+    //create the request
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = () => {
+      if (xhr.readyState !== 4) {
+        return;
+      }
+
+      if (xhr.status !== 200) {
+        console.log('Error:', xhr.status);
+      }
+
+      //add the markers to the map
+      let markers = JSON.parse(xhr.responseText);
+
+      for (let key in markers) {
+        //prevent duplicates
+        if (typeof this._questMarkers[key]!=='undefined') {
+          continue;
+        }
+
+        //make and store the marker
+        let latLng = new google.maps.LatLng(
+          markers[key].latitude,
+          markers[key].longitude
+        );
+
+        this._questMarkers[key] = new google.maps.Marker({
+          position: latLng,
+          map: this._mapRef,
+          title: "quest"
+        });
+      }
+    };
+    xhr.open('POST', '/serv/fetch_quest_markers.cgi');
+    xhr.send(formData);
   }
 
-  logout() {
-    this.props.clearStore();
-    this.props.setScreen(SCREEN_LANDING);
-  }
-
+  //react component methods
   componentDidMount() {
     this.watchPosition();
-    this.loadMarkers();
   }
 
   render() {
