@@ -33,7 +33,26 @@ while(my ($key, $value) = each %markers) {
   }
 }
 
-#TODO: generate new markers if there aren't enough
+#TODO:semaphores to lock creation of new markers to resolve a bug? Related to bug #1
+
+#generate new markers if there aren't enough
+while (keys %package < 10) { #TODO: magic number
+  #TODO: snapped to roads
+
+  #about 100km to a degree
+  my $randomX = (rand($radius) - ($radius/2)) / 100000;
+  my $randomY = (rand($radius) - ($radius/2)) / 100000;
+
+  my $id = db->pushQuestMarker(
+    $latitude+$randomX,
+    $longitude+$randomY
+  );
+
+  $package{$id} = {
+    "latitude" => $latitude+$randomX,
+    "longitude" => $longitude+$randomY
+  };
+ }
 
 #return the JSON structure
 my $json = encode_json(\%package);

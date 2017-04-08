@@ -53,6 +53,8 @@ class ScreenMap extends React.Component {
 
   //load from the server
   loadMarkers() {
+  //BUG: #1 This function is often called multiple times before a response can get back to the client. As a result, too many markers are created on the initial load.
+
     //check the number of loaded markers
     if (this._questMarkers.length >= 10) { //TODO: magic number
       return;

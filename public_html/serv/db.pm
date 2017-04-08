@@ -33,4 +33,21 @@ sub getQuestMarkers {
   return %package;
 }
 
+sub pushQuestMarker {
+  my ($db, $lat, $lng) = @_;
+
+  my $dbh = connectDB();
+  my $sth = $dbh->prepare("INSERT INTO questMarkers (latitude, longitude) VALUES ('$lat','$lng');");
+  $sth->execute() or die $DBI::errstr;
+  $sth->finish();
+
+  $sth = $dbh->prepare("SELECT id FROM questMarkers ORDER BY id DESC LIMIT 1;");
+  $sth->execute() or die $DBI::errstr;
+  my ($id) = $sth->fetchrow_array();
+  $sth->finish();
+
+  $dbh->disconnect();
+  return $id;
+}
+
 1;
