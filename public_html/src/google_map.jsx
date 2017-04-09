@@ -9,7 +9,7 @@ class GoogleMap extends React.Component {
   loadMap() {
     let options = {
       center: {lat: 0, lng: 0},
-      zoom: 18,
+      zoom: 16,
       disableDefaultUI: true
     };
 
