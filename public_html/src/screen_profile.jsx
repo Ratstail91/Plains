@@ -2,21 +2,33 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 
-import { SCREEN_LANDING, SCREEN_MAP, SCREEN_PROFILE, SCREEN_SIGNUP, setScreen } from './actions.jsx';
+import HeaderButtons from './header_buttons.jsx';
+
+import { SCREEN_LANDING, SCREEN_MAP, setScreen } from './actions.jsx';
 
 class ScreenProfile extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  //utility functions
+  logout() {
+    this.props.clearStore();
+    this.props.setScreen(SCREEN_LANDING);
+  }
+
   render() {
     return (
       <div style={this.props.style}>
-        <p>Screen Profile</p>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_LANDING)}>Screen Landing</Button>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_MAP)}>Screen Map</Button>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_PROFILE)} disabled={true}>Screen Profile</Button>
-        <Button type="submit" onClick={() => this.props.setScreen(SCREEN_SIGNUP)}>Screen Signup</Button>
+        <HeaderButtons
+
+          leftText="Logout"
+          leftClick={this.logout.bind(this)}
+
+          rightText="Map"
+          rightClick={()=>{this.props.setScreen(SCREEN_MAP);}}
+
+        />
       </div>
     );
   }
@@ -34,7 +46,8 @@ function mapStateToProps(store) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    setScreen: (screen) => { dispatch(setScreen(screen)); }
+    setScreen: (screen) => { dispatch(setScreen(screen)); },
+    clearStore: () => { dispatch(clearStore()); }
   };
 }
 
