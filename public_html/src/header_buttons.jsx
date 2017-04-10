@@ -10,30 +10,25 @@ class HeaderButtons extends React.Component {
   render() {
     let buttonContainerStyle = {
       position: "fixed",
-      width: "calc(100vw - 4px)",
       top: "2px",
       left: "2px",
+      right: "2px",
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "space-between",
       zIndex: "999"
-    };
-
-    let buttonStyle = {
-      position: "relative"
     };
 
     return (
       <div style={buttonContainerStyle}>
 
         <Button
-          style={buttonStyle}
           color="violet"
-          floated="left"
           onClick={this.props.leftClick}
         >{this.props.leftText}</Button>
 
         <Button
-          style={buttonStyle}
           color="violet"
-          floated="right"
           onClick={this.props.rightClick}
         >{this.props.rightText}</Button>
 
