@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Button } from 'semantic-ui-react';
 
 import HeaderButtons from './header_buttons.jsx';
+import FooterButtons from './footer_buttons.jsx';
 import GoogleMap from './google_map.jsx';
 
 import { clearStore, SCREEN_LANDING, SCREEN_PROFILE, setScreen } from './actions.jsx';
@@ -104,6 +105,74 @@ class ScreenMap extends React.Component {
     xhr.send(formData);
   }
 
+  //use the server's API to determine distances to markers
+  fetchDistances(onSuccess) {
+    //convert the markers into a usable format
+    let posList = [];
+    for (let key in this._questMarkers) {
+      posList.push({
+        id: key,
+        lat: this._questMarkers[key].getPosition().lat(),
+        lng: this._questMarkers[key].getPosition().lng()
+      });
+    }
+
+    //skip an empty set
+    if (posList.length === 0) {
+      return -1;
+    }
+
+    //the payload proper
+    let payload = {
+      origin: {lat: this._lat, lng: this._lng},
+      destinations: posList
+    };
+
+    //build the argument
+    let formData = new FormData();
+    formData.append('payload', JSON.stringify(payload));
+
+    //build the xhr
+    let xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState !== 4) {
+        return;
+      }
+
+      if (xhr.status !== 200) {
+        console.log("Error:",xhr.status);
+      }
+
+      onSuccess(xhr.responseText);
+    };
+
+    //send the message
+    xhr.open('POST', '/serv/distances.cgi');
+    xhr.send(formData);
+  };
+
+  search() {
+    this.fetchDistances(function(responseText) {
+      let response = JSON.parse(responseText);
+
+      let nearest;
+      let nearestValue = 99999999;
+
+      for (let key in response) {
+        if (response[key] < nearestValue) {
+          nearest = key;
+          nearestValue = response[key];
+        }
+        //debugging
+        this._questMarkers[key].setLabel('');
+      }
+      //debugging
+      this._questMarkers[nearest].setLabel('X');
+
+      //TODO: collect the marker if you're close enough
+    }.bind(this));
+  }
+
   //react component methods
   componentDidMount() {
     this.watchPosition();
@@ -120,6 +189,11 @@ class ScreenMap extends React.Component {
           rightText="Profile"
           rightClick={()=>{this.props.setScreen(SCREEN_PROFILE);}}
 
+        />
+
+        <FooterButtons
+          middleText="Search"
+          middleClick={this.search.bind(this)}
         />
 
         <GoogleMap style={{height:"calc(100vh - 24px)"}} setMapRef={(i) => { this._mapRef = i; }} />
