@@ -15,7 +15,7 @@ my $longitude = param('longitude');
 my $radius = param('radius');
 
 #fetch the quests
-my %markers = db->getQuestMarkers();
+my %markers = db->getAllQuestMarkers();
 
 #add markers within the radius to a package
 my $gis = GIS::Distance->new('Polar');

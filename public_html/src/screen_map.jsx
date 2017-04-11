@@ -169,8 +169,41 @@ class ScreenMap extends React.Component {
       //debugging
       this._questMarkers[nearest].setLabel('X');
 
-      //TODO: collect the marker if you're close enough
+      //collect the marker if you're close enough
+      if (nearestValue <= 3000) { //active searching
+        this.collectMarker(nearest);
+      }
     }.bind(this));
+  }
+
+  collectMarker(id) { //TODO: plural?
+    let formData = new FormData();
+    formData.append("id", id);
+    formData.append("latitude", this._lat);
+    formData.append("longitude", this._lng);
+
+    let xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState !== 4) {
+        return;
+      }
+
+      if (xhr.status !== 200) {
+        console.log("Error:",xhr.status);
+      }
+
+      if (xhr.responseText !== 'success') {
+        console.log("Error:",xhr.responseText);
+      }
+
+      //delete the local marker
+      this._questMarkers[id].setMap(null);
+      this._questMarkers.splice(id, 1);
+    }.bind(this);
+
+    xhr.open('POST', '/serv/collect_quest_marker.cgi');
+    xhr.send(formData);
   }
 
   //react component methods

@@ -13,7 +13,7 @@ sub connectDB {
 }
 
 #retreive quest markers from the database
-sub getQuestMarkers {
+sub getAllQuestMarkers {
   my $dbh = connectDB();
   my $sth = $dbh->prepare("SELECT id, latitude, longitude FROM questMarkers;");#TODO: scalability issues
   $sth->execute() or die $DBI::errstr;
@@ -33,6 +33,30 @@ sub getQuestMarkers {
   return %package;
 }
 
+sub getQuestMarker {
+  my ($db, $id) = @_;
+
+  my $dbh = connectDB();
+  my $sth = $dbh->prepare("SELECT latitude, longitude FROM questMarkers WHERE id = '$id';");
+  $sth->execute() or die $DBI::errstr;
+
+  my $count = 0;
+  my $lat;
+  my $lng;
+  while (my @row = $sth->fetchrow_array()) {
+    $count++;
+    $lat = $row[0];
+    $lng = $row[1];
+  }
+
+  if ($count >= 1) {
+    my %package;
+    $package{$id} = [$lat, $lng];
+    return %package;
+  }
+  return -1;
+}
+
 sub pushQuestMarker {
   my ($db, $lat, $lng) = @_;
 
@@ -48,6 +72,16 @@ sub pushQuestMarker {
 
   $dbh->disconnect();
   return $id;
+}
+
+sub deleteQuestMarker {
+  my ($db, $id) = @_;
+
+  my $dbh = connectDB();
+  my $sth = $dbh->prepare("DELETE FROM questMarkers WHERE id = '$id';");
+  $sth->execute() or die $DBI::errstr;
+  $sth->finish();
+  $dbh->disconnect();
 }
 
 1;
