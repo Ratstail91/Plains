@@ -157,7 +157,7 @@ class ScreenLanding extends React.Component {
           <Button onClick={this.loginClick.bind(this)}>Log In</Button>
           <Button onClick={this.signupClick.bind(this)}>Sign Up</Button>
         </div>
-        <p>This website is currently under construction. Please forgive any bugs, features and bugs pretending to be features. This game is best played in a phone browser.</p>
+        <p>This website is not currently under active development. Please forgive any bugs, features and bugs pretending to be features. This game is best played in a phone browser.</p>
       </div>
     );
   }

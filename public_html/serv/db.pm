@@ -50,11 +50,9 @@ sub getQuestMarker {
   }
 
   if ($count >= 1) {
-    my %package;
-    $package{$id} = [$lat, $lng];
-    return %package;
+    return ($lat, $lng);
   }
-  return -1;
+  return (-1, -1);
 }
 
 sub pushQuestMarker {

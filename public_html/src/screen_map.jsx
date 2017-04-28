@@ -57,8 +57,16 @@ class ScreenMap extends React.Component {
   loadMarkers() {
   //BUG: #1 This function is often called multiple times before a response can get back to the client. As a result, too many markers are created on the initial load.
 
+    let size = function(array) {
+      let ret = 0;
+      for (let key in array) {
+        ret++;
+      }
+      return ret;
+    };
+
     //check the number of loaded markers
-    if (this._questMarkers.length >= 10) { //TODO: magic number
+    if (size(this._questMarkers) >= 10) { //TODO: magic number
       return;
     }
 
@@ -97,7 +105,7 @@ class ScreenMap extends React.Component {
         this._questMarkers[key] = new google.maps.Marker({
           position: latLng,
           map: this._mapRef,
-          title: "quest"
+          title: key
         });
       }
     };
